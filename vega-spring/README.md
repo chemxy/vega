@@ -3,15 +3,15 @@
 ## Environment 
 There are two different properties files are being used for Dev and Production environment respectively. Major difference between both of them is the type of database used with both of them. Property file ends with "-dev.properties" using H2 or file based database and then the file ends with "-prod.properties" using MYSQL as database.
 
-Running Spring application using dev properties 
+Running Spring application using dev properties in root directory
 
 ```
-java -jar -Dspring.profiles.active=dev application.jar
+java -jar -Dspring.profiles.active=dev target\venus-0.0.1-SNAPSHOT.jar
 ```
 
-Using Prod properties file
+Using Prod properties file in root directory
 ```
-java -jar -Dspring.profiles.active=prod application.jar
+java -jar -Dspring.profiles.active=prod target\venus-0.0.1-SNAPSHOT.jar
 ```
 
 **Note** :- If you running java application using PROD properties using above command then you also need to start the mysql which you can do using below docker command. Or you can use docker-compose file to run both container.
