@@ -1,0 +1,33 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: DockerCompose@0
+      displayName: Build backend image
+      inputs:
+        dockerComposeCommand: build
+        dockerComposeFile: '$(Build.SourcesDirectory)/vega-spring/docker-compose.yml'
+    - task: DockerCompose@0
+      displayName: Build web image
+      inputs:
+        dockerComposeCommand: build
+        dockerComposeFile: '$(Build.SourcesDirectory)/vega-web/docker-compose.yml'
+                
