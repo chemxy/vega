@@ -2,6 +2,9 @@ version: '3'
 
 services:
   backend:
+#    restart: on-failure
+    depends_on:
+      - venus-mysql
     build:
       context: ./
       dockerfile: ./Dockerfile
@@ -11,7 +14,6 @@ services:
   venus-mysql:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_DATABASE=venus
       - MYSQL_USER=venus

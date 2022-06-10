@@ -1,5 +1,9 @@
 # venus-spring
 
+## Build Spring application
+
+run `mvn clean package spring-boot:repackage`
+
 ## Environment 
 There are two different properties files are being used for Dev and Production environment respectively. Major difference between both of them is the type of database used with both of them. Property file ends with "-dev.properties" using H2 or file based database and then the file ends with "-prod.properties" using MYSQL as database.
 
