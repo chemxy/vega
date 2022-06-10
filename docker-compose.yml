@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./vega-web/server
+      dockerfile: ./Dockerfile
+    image: "venus/quantum"
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+  client:
+    build:
+      context: ./vega-web/
+      dockerfile: ./Dockerfile
+    image: "venus/theswitch"
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+  backend:
+    restart: on-failure
+    depends_on:
+      - venus-mysql
+    build:
+      context: ./vega-spring/
+      dockerfile: ./Dockerfile
+    image: "venus/beeple"
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+  venus-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=venus
+      - MYSQL_USER=venus
+      - MYSQL_PASSWORD=venus
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+
+networks:
+  backend:
