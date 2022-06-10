@@ -8,8 +8,7 @@ services:
     image: "venus/quantum"
     ports:
       - "8000:8000"
-    networks:
-      - backend
+
   client:
     build:
       context: ./vega-web/
@@ -17,8 +16,7 @@ services:
     image: "venus/theswitch"
     ports:
       - "3000:3000"
-    networks:
-      - backend
+
   backend:
     restart: on-failure
     depends_on:
@@ -29,8 +27,7 @@ services:
     image: "venus/beeple"
     ports:
       - "8080:8080"
-    networks:
-      - backend
+
   venus-mysql:
     image: mysql:latest
     environment:
@@ -40,8 +37,3 @@ services:
       - MYSQL_PASSWORD=venus
     ports:
       - 3306:3306
-    networks:
-      - backend
-
-networks:
-  backend:

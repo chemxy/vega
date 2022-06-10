@@ -21,13 +21,10 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
-
 CMD ["mvn"]
-
 #
 # end maven
 #
-
 
 COPY mvnw.cmd .
 COPY mvnw .
@@ -40,6 +37,7 @@ ARG JAR_FILE=venus-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
+
 #
 # Package stage
 #
