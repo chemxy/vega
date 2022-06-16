@@ -8,7 +8,7 @@ WORKDIR /app
 ENV PATH ./node_modules/.bin:$PATH
 COPY ["package.json", "package-lock.json", "./"]
 
-RUN npm install 
+RUN npm install --production
 
 COPY . ./
 
