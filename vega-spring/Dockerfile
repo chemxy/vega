@@ -31,7 +31,7 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 COPY src .src
-RUN mvn clean package spring-boot:repackage
+RUN ./mvnw clean package spring-boot:repackage
 #RUN #mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 ARG JAR_FILE=venus-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} .
