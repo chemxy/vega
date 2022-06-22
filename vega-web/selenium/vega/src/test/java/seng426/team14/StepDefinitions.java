@@ -13,8 +13,11 @@ import seng426.team14.utils.Util;
 
 public class StepDefinitions {
 
+    /* ------------------- declare properties ------------------*/
     protected WebDriver driver;
 
+
+    /* --------------------------- before and after lifecycles ------------------------------*/
     @Before
     public void setUp() throws Exception {
         System.out.println("DEBUG: before method: init driver");
@@ -29,10 +32,12 @@ public class StepDefinitions {
         DriverFactory.getInstance().removeDriver();
     }
 
-    // step definitions
+    /* --------------------------- step definitions ------------------------------*/
+
+    // TODO sample test - to be deleted
     @Given("I get to google")
     public void i_get_to_google() {
-       driver.get("https://www.google.ca");
+        driver.get("https://www.google.ca");
         Util.sleep(5);
     }
 }

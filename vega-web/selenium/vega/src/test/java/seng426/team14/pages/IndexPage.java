@@ -15,5 +15,5 @@ public class IndexPage extends Page {
     }
 
     @FindBy(id = "sampleElement")
-    public WebElement sampleElement;
+    public WebElement sampleElement; //TODO sample - to be deleted
 }
