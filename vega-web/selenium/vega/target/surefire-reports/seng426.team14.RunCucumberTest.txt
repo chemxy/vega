@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: seng426.team14.RunCucumberTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.05 s - in seng426.team14.RunCucumberTest
