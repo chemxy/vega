@@ -7,6 +7,7 @@ const VenusNavBar = (props) => {
   const {user} = useContext(UserContext);
 	var logout;
   var resources;
+  var secrets;
   var adminpanel;
 
   if(user.username && user.jwt){
@@ -18,6 +19,7 @@ const VenusNavBar = (props) => {
 
   if(user.role == "ROLE_STAFF" || user.role == "ROLE_ADMIN"){
     resources = <Nav.Link href="/resources">Resources</Nav.Link>;
+    secrets = <Nav.Link href="/secrets">Secrets</Nav.Link>;
   }
 
   if(user.role == "ROLE_ADMIN"){
@@ -32,6 +34,7 @@ const VenusNavBar = (props) => {
         				<Nav.Link href="/news">News & Events</Nav.Link>
         				<Nav.Link href="/leadership">Leadership</Nav.Link>
         				{resources}
+        				{secrets}
         				<Nav.Link href="#pricing">About us</Nav.Link>
         				<Nav.Link href="/contactus">Contact us</Nav.Link>
               <Nav.Item className="float-right">

@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import Platform from './components/pages/Platform.js';
 import Login from './components/pages/Login.js';
 import NewsAndEvents from './components/pages/NewsAndEvents.js';
+import Secrets from './components/pages/Secrets.js';
 import Resources from './components/pages/Resources.js';
 import AdminPanel from './components/pages/AdminPanel.js';
 import Leadership from './components/pages/Leadership.js';
@@ -35,6 +36,7 @@ function App() {
           <Route path="/account" component={UserAccount} />
           <Route path="/resources" component={Resources} />
           <Route path="/adminpanel" component={AdminPanel} />
+          <Route path="/secrets" component={Secrets} />
         </Switch>
     </UserProvider>
   );

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS usersecrets;
 DROP TABLE IF EXISTS authorities;
 DROP TABLE IF EXISTS userinfo;
 DROP TABLE IF EXISTS users;
@@ -19,6 +20,12 @@ CREATE TABLE IF NOT EXISTS userinfo (
     username VARCHAR(50) NOT NULL,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+CREATE TABLE IF NOT EXISTS usersecrets (
+    username VARCHAR(50) NOT NULL,
+    secretname VARCHAR(50) NOT NULL,
     FOREIGN KEY (username) REFERENCES users(username)
 );
 -- CREATE UNIQUE  INDEX ix_auth_username on authorities (username,authority);
