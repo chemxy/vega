@@ -8,6 +8,9 @@ const Secrets = (props) => {
 
 	const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const [secretName, setSecretName] = useState('');
+
 	const {user} = useContext(UserContext);
 	const [listOfFiles, setFiles] = useState([]);
 	const [dataLoaded, setDataLoaded] = useState(false);
@@ -29,14 +32,11 @@ const Secrets = (props) => {
 		setIsFilePicked(true);
 	};
 
-	const handleSubmission = () => {
+	const handleSubmission:function = (evt) => {
+	    evt.preventDefault();
 		const formData = new FormData();
 		formData.append("file", selectedFile);
-		fileUploader(formData, user.jwt)
-			.then(res => {
-				console.log("Response", res);
-			})
-
+        window.alert(secretName);
 	}
 
 	const fetchFileData = (name) => {
@@ -47,18 +47,15 @@ const Secrets = (props) => {
 			})
 	}
 
-	const listOfFilesHTML = () => {
-		if(listOfFiles.length){
-			return listOfFiles.map((file) => <li onClick={() => fetchFileData(file)} style={{"cursor":"pointer"}}><a href="#">{file}</a></li>)
-		}
-
-	}
-
 	if (user.role == "ROLE_ADMIN"){
 		uploadHTML = (<Row>
 				<Col className="mx-auto" xs={6}>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>SECRET NAME</Form.Label>
+                        <Form.Control type="text" onChange={e => setSecretName(e.target.value)}/>
+                    </Form.Group>
 					<Form.Group controlId="formFile" className="mb-3">
-    					<Form.Label>Resources Upload</Form.Label>
+    					<Form.Label>SECRET UPLOAD</Form.Label>
     					<Form.Control type="file" onChange={changeHandler} />
  					</Form.Group>
  					<Button variant="primary" type="submit" onClick={handleSubmission}>
