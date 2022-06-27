@@ -44,31 +44,31 @@ const EditNews = () => {
     }
 
     return <div>
-        <Form>
+        <Form className="m-5">
             <Form.Group className="">
-                <Form.Label>Heading</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <div>
-                    <textarea onChange={e => setTitle(e.target.value)} value={title} />
+                    <textarea className="w-75" onChange={e => setTitle(e.target.value)} value={title} />
                 </div>
             </Form.Group>
             <Form.Group className="">
-                <Form.Label>Sub-heading</Form.Label>
-                <div>
-                    <textarea onChange={e => setSubtitle(e.target.value)} value={subtitle} />
+                <Form.Label>Subtitle</Form.Label>
+                <div >
+                    <textarea className="w-75" onChange={e => setSubtitle(e.target.value)} value={subtitle} />
                 </div>
             </Form.Group>
             <Form.Group className="">
                 <Form.Label>Content</Form.Label>
                 <div>
-                    <textarea onChange={e => setContent(e.target.value)} value={content} />
+                    <textarea className="w-75 text-input" onChange={e => setContent(e.target.value)} value={content} />
                 </div>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={doEdit}>
+            <button className="btn btn-outline-success" type="submit" onClick={doEdit}>
                 Submit
-            </Button>
-            <Button variant="primary" type="submit" onClick={doCancel}>
+            </button>
+            <button className="btn btn-outline-danger ms-2" type="submit" onClick={doCancel}>
                 Cancel
-            </Button>
+            </button>
         </Form>
     </div>
 }

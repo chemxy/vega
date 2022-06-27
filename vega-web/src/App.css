@@ -12,6 +12,10 @@
   border-bottom: 1px solid #999;
 }
 
+.text-input {
+  height: 300px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

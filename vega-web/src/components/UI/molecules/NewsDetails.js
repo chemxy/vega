@@ -35,8 +35,8 @@ const NewsDetails = ({ news }) => {
 				<h1>{news.h1}</h1>
 				<h2>{news.h2}</h2>
 				{para}
-				<Button onClick={onEdit}>edit</Button>
-				<Button onClick={onDelete}>delete</Button>
+				<button onClick={onEdit} className="btn btn-primary">edit</button>
+				<button onClick={onDelete} className="btn btn-danger ms-2">delete</button>
 			</div>
 		);
 	}

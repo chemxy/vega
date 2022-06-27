@@ -16,7 +16,9 @@ const BlogPageLayout = ({ listOfNews }) => {
 		<Container className="d-flex flex-column min-vh-100 justify-content-between">
 			<Row>
 				<Header />
-				<Button onClick={onAdd}>Add</Button>
+				<div>
+					<Button onClick={onAdd} className="w-10 mt-3 mb-2">Add News</Button>
+				</div>
 				<ListNewsDetails listOfNews={listOfNews} />
 			</Row>
 			<Footer />
