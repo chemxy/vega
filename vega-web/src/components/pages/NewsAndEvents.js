@@ -16,10 +16,13 @@ const NewsAndEvents = (props) => {
 
 	let listOfNews = newsList;
 	let count = 0;
-	listOfNews.forEach(news => {
-		news.id = count;
-		count += 1;
-	})
+	if (listOfNews) {
+		listOfNews.forEach(news => {
+			news.id = count;
+			count += 1;
+		})
+	}
+
 
 	return (
 		<BlogPageLayout listOfNews={listOfNews} />

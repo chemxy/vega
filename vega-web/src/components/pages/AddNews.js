@@ -1,19 +1,15 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { doPost } from "../../service/BaseAPI";
 
-const EditNews = () => {
+const AddNews = () => {
     const history = useHistory();
-    const location = useLocation();
-    let news = location.state.content;
-    const defaultTitle = news.h1.toString();
-    const defaultSubtitle = news.h2.toString();
-    const defaultContent = news.para.toString();
-    let [title, setTitle] = useState(defaultTitle);
-    let [subtitle, setSubtitle] = useState(defaultSubtitle);
-    let [content, setContent] = useState(defaultContent);
-    function doEdit() {
+
+    let [title, setTitle] = useState('');
+    let [subtitle, setSubtitle] = useState('');
+    let [content, setContent] = useState('');
+    function doAdd() {
         // console.log(title);
         // console.log(subtitle);
         // console.log(content);
@@ -21,15 +17,12 @@ const EditNews = () => {
         const datestring = (d.getMonth() + 1) + "." + d.getDate() + "." + d.getFullYear().toString().substring(2);
         // console.log(datestring)
         const body = {
-            "id": news.id,
-            "content": {
-                "date": datestring,
-                "h1": title,
-                "h2": subtitle,
-                "para": [content]
-            }
+            "date": datestring,
+            "h1": title,
+            "h2": subtitle,
+            "para": [content]
         }
-        doPost("http://localhost:8000/api/venus/edit-news", body).then(res => {
+        doPost("http://localhost:8000/api/venus/add-news", body).then(res => {
             console.log(res)
         })
         history.push({
@@ -63,7 +56,7 @@ const EditNews = () => {
                     <textarea onChange={e => setContent(e.target.value)} value={content} />
                 </div>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={doEdit}>
+            <Button variant="primary" type="submit" onClick={doAdd}>
                 Submit
             </Button>
             <Button variant="primary" type="submit" onClick={doCancel}>
@@ -73,4 +66,4 @@ const EditNews = () => {
     </div>
 }
 
-export default EditNews;
+export default AddNews;
