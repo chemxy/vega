@@ -5,6 +5,7 @@ import express from 'express';
 import { config } from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import fs from 'fs'
 
 const app = express();
 const port = 8000;
@@ -30,6 +31,42 @@ app.get('/', (req, res) => {
 app.use("/api/login", auth);
 app.use("/api/venus", fileUploader)
 app.use("/api/venus/admin", adminPanel)
+
+
+app.get("/api/venus/get-news", (req, res) => {
+  let newsList;
+  fs.readFile('./newsList.json', "utf8", (err, jsonString) => {
+    if (err) {
+      console.log("File read failed:", err);
+      return;
+    }
+    newsList = jsonString;
+    // console.log(newsList);
+    // console.log("sending news list")
+    res.send(newsList)
+  })
+})
+
+app.post("/api/venus/edit-news", (req, res) => {
+  let newsList;
+  fs.readFile('./newsList.json', "utf8", (err, jsonString) => {
+    if (err) {
+      console.log("File read failed:", err);
+      return;
+    }
+    newsList = JSON.parse(jsonString);
+    // console.log(newsList);
+    const id = req.body.id;
+    const modifiedNews = req.body.content;
+    newsList[id] = modifiedNews;
+    // console.log(newsList)
+    fs.writeFile("./newsList.json", JSON.stringify(newsList), err => {
+      if (err) console.log("Error writing file:", err);
+      res.send('OK: news updated');
+    });
+
+  })
+})
 
 app.listen(port, () => {
   console.log(process.env.API_URL);

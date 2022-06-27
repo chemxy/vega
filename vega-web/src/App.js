@@ -17,6 +17,7 @@ import {UserProvider} from './auth/UserProvider.js';
 import {UserContext} from './auth/UserProvider.js';
 
 import UserAccount from './components/pages/UserAccount.js';
+import EditNews from './components/pages/EditNews';
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
         	<Route path="/contactus" component={UserRegistration} exact />
         	<Route path="/leadership" component={Leadership} exact />
         	<Route path="/news" component={NewsAndEvents} />
+          <Route path="/edit-news" component={EditNews} />
         	<Route path="/platform" component={Platform} />
         	<Route path="/login" component={Login} />
           <Route path="/account" component={UserAccount} />
