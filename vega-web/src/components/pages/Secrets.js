@@ -8,9 +8,7 @@ const Secrets = (props) => {
 
 	const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
-
     const [secretName, setSecretName] = useState('');
-
 	const {user} = useContext(UserContext);
 	const [listOfFiles, setFiles] = useState([]);
 	const [dataLoaded, setDataLoaded] = useState(false);
@@ -35,8 +33,10 @@ const Secrets = (props) => {
 	const handleSubmission:function = (evt) => {
 	    evt.preventDefault();
 		const formData = new FormData();
-		formData.append("file", selectedFile);
-        window.alert(secretName);
+		formData.append("username", user.username);
+		formData.append("secretName", secretName);
+		formData.append("secret", selectedFile);
+        window.alert(formData.get("username")+"\nSecret: "+formData.get("secretName")+"\nSecret File Name: "+formData.get("secret").name);
 	}
 
 	const fetchFileData = (name) => {

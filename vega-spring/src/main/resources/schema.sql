@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS userinfo (
 CREATE TABLE IF NOT EXISTS usersecrets (
     username VARCHAR(50) NOT NULL,
     secretname VARCHAR(50) NOT NULL,
+    secret BLOB,
+    timecreated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (username) REFERENCES users(username)
 );
 -- CREATE UNIQUE  INDEX ix_auth_username on authorities (username,authority);
