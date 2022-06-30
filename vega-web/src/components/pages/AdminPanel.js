@@ -1,28 +1,28 @@
 import SimplePageLayout from '../templates/SimplePageLayout.js';
-import {fetchuser, enableAccount, changeAccountRole} from  '../../service/AdminPanel/AdminPanel.js';
-import {UserContext} from '../../auth/UserProvider.js';
-import {useState, useContext, useEffect} from 'react';
+import { fetchuser, enableAccount, changeAccountRole } from '../../service/AdminPanel/AdminPanel.js';
+import { UserContext } from '../../auth/UserProvider.js';
+import { useState, useContext, useEffect } from 'react';
 
-import {Form, Button, Row, Col, Table} from 'react-bootstrap';
+import { Form, Button, Row, Col, Table } from 'react-bootstrap';
 
 const AdminPanel = (props) => {
-	const {user} = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const [listOfUsers, setUsers] = useState([]);
 	useEffect(() => {
-			console.log("Inside useEffect")
-			fetchuser(user.jwt)
-				.then(resp => {
-					setUsers(resp)
-					});
-		
+		console.log("Inside useEffect")
+		fetchuser(user.jwt)
+			.then(resp => {
+				setUsers(resp)
+			});
+
 
 	}, [user]);
 
 	const enableUser = (username) => {
-		console.log("Enable User called with",username)
+		console.log("Enable User called with", username)
 		enableAccount(username, user.jwt)
-		.then(resp => 
-			console.log("User enabled"))
+			.then(resp =>
+				console.log("User enabled"))
 	}
 
 
@@ -30,34 +30,34 @@ const AdminPanel = (props) => {
 		console.log(evt.target.value, username)
 		var role = evt.target.value
 		changeAccountRole(username, role, user.jwt)
-		.then(resp => 
-			console.log("Changed Roles"))
+			.then(resp =>
+				console.log("Changed Roles"))
 	}
 
 	const listOfUsersHTML = () => {
-		if(listOfUsers.length){
+		if (listOfUsers.length) {
 			return listOfUsers.map((user) => <tr><td>{user.firstName}</td><td>{user.lastName}</td><td>{user.username}</td><td onClick={() => enableUser(user.username)}>
-				<a href="#">Enable User</a></td>
+				<a id="admin-enable-user" href="#">Enable User</a></td>
 				<td>
-					<Form.Select aria-label="Floating label select example" onChange={(evt) => changeRole(evt, user.username)}>
-					    <option>Open this select menu</option>
-					    <option value="ROLE_STAFF">STAFF</option>
-					    <option value="ROLE_USER">USER</option>
-  					</Form.Select>
-				</td></tr>) 
+					<Form.Select id="admin-assign-role-dropbox" aria-label="Floating label select example" onChange={(evt) => changeRole(evt, user.username)}>
+						<option>Open this select menu</option>
+						<option value="ROLE_STAFF">STAFF</option>
+						<option value="ROLE_USER">USER</option>
+					</Form.Select>
+				</td></tr>)
 		}
 	}
 
-	return(
+	return (
 		<SimplePageLayout>
 			<Table>
 				<thead>
-					<tr>
-						<td>First Name</td>
-						<td>Last Name</td>
-						<td>Username</td>
-						<td></td>
-						<td></td>
+					<tr id="admin-users-table-header">
+						<td id="admin-users-table-header-first-name">First Name</td>
+						<td id="admin-users-table-header-last-name">Last Name</td>
+						<td id="admin-users-table-header-username">Username</td>
+						<td id="admin-users-table-header-enable-user"></td>
+						<td id="admin-users-table-header-assign-role"></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,6 +65,6 @@ const AdminPanel = (props) => {
 				</tbody>
 			</Table>
 		</SimplePageLayout>
-		)
+	)
 }
 export default AdminPanel;
