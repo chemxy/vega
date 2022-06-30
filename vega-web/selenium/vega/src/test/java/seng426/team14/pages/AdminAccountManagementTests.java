@@ -11,11 +11,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 public class AdminAccountManagementTests {
 
     public WebDriver driver;
 
-    @Test
+//    @Test
     public void adminLoginLogoutTest() {
         System.setProperty("webdriver.chrome.driver","./drivers/chromedriver-102.0.5005.61.exe");
 
@@ -57,7 +58,7 @@ public class AdminAccountManagementTests {
     }
 
 
-    @Test
+//    @Test
     public void adminLoginWrongCredTest() {
         System.setProperty("webdriver.chrome.driver","./drivers/chromedriver-102.0.5005.61.exe");
 
@@ -88,7 +89,7 @@ public class AdminAccountManagementTests {
         driver.quit();
     }
 
-    @Test
+//    @Test
     public void adminLoginEmptyCredTest() {
         System.setProperty("webdriver.chrome.driver","./drivers/chromedriver-102.0.5005.61.exe");
 
@@ -128,7 +129,7 @@ public class AdminAccountManagementTests {
         driver.quit();
     }
 
-    @Test
+//    @Test
     public void roleChangeAvailableForAdminTest() {
         System.setProperty("webdriver.chrome.driver","./drivers/chromedriver-102.0.5005.61.exe");
 
@@ -162,7 +163,7 @@ public class AdminAccountManagementTests {
         driver.quit();
     }
 
-    @Test
+//    @Test
     public void resourceUploadAvailableForAdminTest() {
         System.setProperty("webdriver.chrome.driver","./drivers/chromedriver-102.0.5005.61.exe");
 
