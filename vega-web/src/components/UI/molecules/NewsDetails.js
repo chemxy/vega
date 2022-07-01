@@ -50,7 +50,5 @@ const NewsDetails = ({ news }) => {
 			</div>
 		);
 	}
-
-
 }
 export default NewsDetails;
