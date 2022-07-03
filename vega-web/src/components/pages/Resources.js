@@ -1,26 +1,27 @@
-import {useState, useContext, useEffect} from 'react';
+import { useState, useContext, useEffect } from 'react';
 import SimplePageLayout from '../templates/SimplePageLayout.js';
-import {Form, Button, Row, Col} from 'react-bootstrap';
-import {fileUploader, fetchFiles, fetchData} from '../../service/FileUpload/FileUploader.js';
-import {UserContext} from '../../auth/UserProvider.js';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { fileUploader, fetchFiles, fetchData } from '../../service/FileUpload/FileUploader.js';
+import { UserContext } from '../../auth/UserProvider.js';
 
-const Resources = (props) => {	
-	
+const Resources = (props) => {
+
 	const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
-	const {user} = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const [listOfFiles, setFiles] = useState([]);
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [content, setContent] = useState('');
 	var uploadHTML;
 	useEffect(() => {
-		console.log("JWT is",user.jwt, dataLoaded)
-			console.log("Inside useEffect")
-			fetchFiles(user.jwt)
-				.then(resp => {
-					setDataLoaded(true);
-					setFiles(resp)});
-		
+		console.log("JWT is", user.jwt, dataLoaded)
+		console.log("Inside useEffect")
+		fetchFiles(user.jwt)
+			.then(resp => {
+				setDataLoaded(true);
+				setFiles(resp)
+			});
+
 
 	}, [user])
 
@@ -41,40 +42,40 @@ const Resources = (props) => {
 
 	const fetchFileData = (name) => {
 		console.log(user.jwt)
-		fetchData(name,user.jwt)
+		fetchData(name, user.jwt)
 			.then(res => {
 				setContent(res);
 			})
 	}
 
 	const listOfFilesHTML = () => {
-		if(listOfFiles.length){
-			return listOfFiles.map((file) => <li onClick={() => fetchFileData(file)} style={{"cursor":"pointer"}}><a href="#">{file}</a></li>)
+		if (listOfFiles.length) {
+			return listOfFiles.map((file) => <li onClick={() => fetchFileData(file)} style={{ "cursor": "pointer" }}><a href="#">{file}</a></li>)
 		}
 
 	}
 
-	if (user.role == "ROLE_ADMIN"){
+	if (user.role == "ROLE_ADMIN") {
 		uploadHTML = (<Row>
-				<Col className="mx-auto" xs={6}>
-					<Form.Group controlId="formFile" className="mb-3">
-    					<Form.Label>Resources Upload</Form.Label>
-    					<Form.Control type="file" onChange={changeHandler} />
- 					</Form.Group>
- 					<Button variant="primary" type="submit" onClick={handleSubmission}>
-    					Submit
-  					</Button>
- 				</Col>
-			</Row>);
+			<Col className="mx-auto" xs={6}>
+				<Form.Group controlId="formFile" className="mb-3">
+					<Form.Label id="resource-upload-label">Resources Upload</Form.Label>
+					<Form.Control id="resource-upload" type="file" onChange={changeHandler} />
+				</Form.Group>
+				<Button id="resource-upload-submit-button" variant="primary" type="submit" onClick={handleSubmission}>
+					Submit
+				</Button>
+			</Col>
+		</Row>);
 	}
 
 	return (
 		<SimplePageLayout>
-			
+
 			{uploadHTML}
 			<Row mt="5">
 				<Col sm={6}>
-					<ul style={{"list-style-type":"none"}}>{listOfFilesHTML()}</ul>
+					<ul style={{ "list-style-type": "none" }}>{listOfFilesHTML()}</ul>
 				</Col>
 			</Row>
 			<Row>
@@ -83,7 +84,7 @@ const Resources = (props) => {
 				</Col>
 			</Row>
 		</SimplePageLayout>
-		);
+	);
 }
 
 export default Resources;

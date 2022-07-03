@@ -1,28 +1,28 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {Navbar, Nav, Container} from 'react-bootstrap';
-import {UserContext} from '../../../auth/UserProvider.js';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { UserContext } from '../../../auth/UserProvider.js';
 
 const VenusNavBar = (props) => {
-  const {user} = useContext(UserContext);
-	var logout;
+  const { user } = useContext(UserContext);
+  var logout;
   var resources;
   var secrets;
   var adminpanel;
 
-  if(user.username && user.jwt){
+  if (user.username && user.jwt) {
     console.log(user);
     logout = <Nav.Link href="/account">Logout</Nav.Link>;
-  } else{
+  } else {
     logout = <Nav.Link href="/login">Login/SignUp</Nav.Link>;
   }
 
-  if(user.role == "ROLE_STAFF" || user.role == "ROLE_ADMIN"){
+  if (user.role == "ROLE_STAFF" || user.role == "ROLE_ADMIN") {
     resources = <Nav.Link href="/resources">Resources</Nav.Link>;
     secrets = <Nav.Link href="/secrets">Secrets</Nav.Link>;
   }
 
-  if(user.role == "ROLE_ADMIN"){
+  if (user.role == "ROLE_ADMIN") {
     adminpanel = <Nav.Link href="/adminpanel">Admin</Nav.Link>
   }
 

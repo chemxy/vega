@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import HomePageLayout from './components/templates/HomePageLayout.js';
 import BlogPageLayout from './components/templates/BlogPageLayout.js';
 import UserRegistrationPageLayout from './components/templates/UserRegistrationPageLayout.js'
@@ -14,15 +14,17 @@ import Resources from './components/pages/Resources.js';
 import AdminPanel from './components/pages/AdminPanel.js';
 import Leadership from './components/pages/Leadership.js';
 import UserRegistration from './components/pages/UserRegistration.js';
-import {UserProvider} from './auth/UserProvider.js';
-import {UserContext} from './auth/UserProvider.js';
+import { UserProvider } from './auth/UserProvider.js';
+import { UserContext } from './auth/UserProvider.js';
 
 import UserAccount from './components/pages/UserAccount.js';
+import EditNews from './components/pages/EditNews';
+import AddNews from './components/pages/AddNews';
 
 function App() {
-  
 
-  const {user, setUserInfo, logout} = useContext(UserContext);
+
+  const { user, setUserInfo, logout } = useContext(UserContext);
 
   return (
    <UserProvider value ={user, setUserInfo, logout}> 
