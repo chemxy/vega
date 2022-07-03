@@ -7,6 +7,7 @@ const VenusNavBar = (props) => {
   const { user } = useContext(UserContext);
   var logout;
   var resources;
+  var secrets;
   var adminpanel;
 
   if (user.username && user.jwt) {
@@ -18,6 +19,7 @@ const VenusNavBar = (props) => {
 
   if (user.role == "ROLE_STAFF" || user.role == "ROLE_ADMIN") {
     resources = <Nav.Link href="/resources">Resources</Nav.Link>;
+    secrets = <Nav.Link href="/secrets">Secrets</Nav.Link>;
   }
 
   if (user.role == "ROLE_ADMIN") {
@@ -25,22 +27,23 @@ const VenusNavBar = (props) => {
   }
 
   return (
-    <Navbar bg="light" variant="light">
-      <Container>
-        <Nav className="w-100 ">
-          <Nav.Link href="/platform" id="navbar-platform-tab">Platform</Nav.Link>
-          <Nav.Link href="/news" id="navbar-news-tab">News & Events</Nav.Link>
-          <Nav.Link href="/leadership" id="navbar-leadership-tab">Leadership</Nav.Link>
-          {resources}
-          <Nav.Link href="#pricing" id="navbar-pricing-tag">About us</Nav.Link>
-          <Nav.Link href="/contactus">Contact us</Nav.Link>
-          <Nav.Item className="float-right">
-            {logout}
-          </Nav.Item>
-          {adminpanel}
-        </Nav>
-      </Container>
-    </Navbar>
-  );
+		<Navbar bg="light" variant="light">
+    		<Container>
+    			<Nav className="w-100 ">
+                <Nav.Link href="/platform">Platform</Nav.Link>
+        				<Nav.Link href="/news">News & Events</Nav.Link>
+        				<Nav.Link href="/leadership">Leadership</Nav.Link>
+        				{resources}
+        				{secrets}
+        				<Nav.Link href="#pricing">About us</Nav.Link>
+        				<Nav.Link href="/contactus">Contact us</Nav.Link>
+              <Nav.Item className="float-right">
+                {logout}
+              </Nav.Item>
+                {adminpanel}
+    			</Nav>
+    		</Container>
+  		</Navbar>
+		);
 }
 export default VenusNavBar;

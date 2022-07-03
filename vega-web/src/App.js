@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import Platform from './components/pages/Platform.js';
 import Login from './components/pages/Login.js';
 import NewsAndEvents from './components/pages/NewsAndEvents.js';
+import Secrets from './components/pages/Secrets.js';
 import Resources from './components/pages/Resources.js';
 import AdminPanel from './components/pages/AdminPanel.js';
 import Leadership from './components/pages/Leadership.js';
@@ -26,20 +27,19 @@ function App() {
   const { user, setUserInfo, logout } = useContext(UserContext);
 
   return (
-    <UserProvider value={user, setUserInfo, logout}>
-      <Switch>
-        <Route path="/" component={HomePageLayout} exact />
-        <Route path="/contactus" component={UserRegistration} exact />
-        <Route path="/leadership" component={Leadership} exact />
-        <Route path="/news" component={NewsAndEvents} />
-        <Route path="/edit-news" component={EditNews} />
-        <Route path="/add-news" component={AddNews} />
-        <Route path="/platform" component={Platform} />
-        <Route path="/login" component={Login} />
-        <Route path="/account" component={UserAccount} />
-        <Route path="/resources" component={Resources} />
-        <Route path="/adminpanel" component={AdminPanel} />
-      </Switch>
+   <UserProvider value ={user, setUserInfo, logout}> 
+        <Switch>
+        	<Route path="/" component={HomePageLayout} exact />
+        	<Route path="/contactus" component={UserRegistration} exact />
+        	<Route path="/leadership" component={Leadership} exact />
+        	<Route path="/news" component={NewsAndEvents} />
+        	<Route path="/platform" component={Platform} />
+        	<Route path="/login" component={Login} />
+          <Route path="/account" component={UserAccount} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/adminpanel" component={AdminPanel} />
+          <Route path="/secrets" component={Secrets} />
+        </Switch>
     </UserProvider>
   );
 }
