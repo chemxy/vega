@@ -29,6 +29,7 @@ const LoginUser = ({ onSubmit }) => {
 					<Button id="login-submit-button" variant="primary" type="submit" onClick={submitForm}>
 						Submit
 					</Button>
+					<a id='login-signup-button' href="/signup"> Sign up</a>
 				</Form>
 			</Col>
 		</Row>
