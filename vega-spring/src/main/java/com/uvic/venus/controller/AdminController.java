@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -51,7 +52,6 @@ public class AdminController {
     public ResponseEntity<?> enableUserAccount(@RequestParam String username, @RequestParam boolean enable){
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
         UserDetails userDetails = manager.loadUserByUsername(username);
-
         User.UserBuilder builder = User.builder();
         builder.username(userDetails.getUsername());
         builder.password(userDetails.getPassword());
@@ -59,7 +59,7 @@ public class AdminController {
         builder.disabled(!enable);
 
         manager.updateUser(builder.build());
-        return ResponseEntity.ok("User Updated Successfully");
+        return ResponseEntity.ok("User enabled Successfully");
     }
 
     @RequestMapping(value ="/changerole", method = RequestMethod.GET)
@@ -77,11 +77,13 @@ public class AdminController {
         builder.disabled(userDetails.isEnabled());
 
         manager.updateUser(builder.build());
-        return ResponseEntity.ok("User Updated Successfully");
+        return ResponseEntity.ok("User role changed Successfully");
     }
 
-    @PostMapping(value = "/handlefileupload")
+    @RequestMapping(value = "/handlefileupload", method = RequestMethod.POST,
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file){
+        System.out.println("in admin file upload");
         storageService.store(file);
         return ResponseEntity.ok("File uploaded Successfully");
     }
