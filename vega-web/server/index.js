@@ -6,6 +6,7 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import fs from 'fs'
+import { doPost } from './services/HTTPRequestAPI.js';
 
 const app = express();
 const port = 8000;
@@ -107,6 +108,17 @@ app.post("/api/venus/delete-news", (req, res) => {
       res.send('OK: news deleted');
     });
   })
+})
+
+app.post("/api/venus/register", (req, res) => {
+
+  doPost('http://localhost:8080/venus/register', req.body).then(res => {
+    res.send(res);
+  })
+    .catch(error => {
+      console.log("ERROR:", error);
+      res.send(error);
+    })
 })
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
-import {UserProvider} from '../auth/UserProvider.js';
+import { UserProvider } from '../auth/UserProvider.js';
 
-function getUserToken(){
+function getUserToken() {
   return UserProvider;
 }
 
@@ -24,8 +24,8 @@ export async function handleResponse(response, isBlob = false) {
 export async function doGet(url, token) {
   const response = await fetch(url, {
     method: 'GET',
-    headers:{
-      'Authorization':'Bearer '+token
+    headers: {
+      'Authorization': 'Bearer ' + token
     }
   });
   return await handleResponse(response);
@@ -36,7 +36,7 @@ export async function doPost(url, data) {
   console.debug('Request data:', data);
   const response = await fetch(url, {
     method: 'POST',
-    headers : {
+    headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data),
@@ -46,11 +46,11 @@ export async function doPost(url, data) {
 
 export async function doPostFile(url, data, token) {
   console.log(getUserToken());
-  console.debug('Request data:', data);
+  console.log('Request data:', data);
   const response = await fetch(url, {
     method: 'POST',
-    headers:{
-      'Authorization':'Bearer '+token
+    headers: {
+      'Authorization': 'Bearer ' + token,
     },
     body: data
   });
