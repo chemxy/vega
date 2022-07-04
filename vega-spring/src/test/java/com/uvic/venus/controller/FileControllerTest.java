@@ -51,7 +51,7 @@ class FileControllerTest {
 
     @Test
     void serveFile() throws MalformedURLException {
-        Resource res = new FileUrlResource("file:C:\\Users\\aleja\\Desktop\\Folder\\code\\seng426\\vega\\vega-spring\\src\\test\\java\\com\\uvic\\venus\\controller\\testing.txt");
+        Resource res = new FileUrlResource("file:d:/test.txt");
         when(SS.loadAsResource(any())).thenReturn(res);
         ResponseEntity<?> responseEntity = FC.serveFile("file.txt");
         assertEquals(200, responseEntity.getStatusCodeValue());
