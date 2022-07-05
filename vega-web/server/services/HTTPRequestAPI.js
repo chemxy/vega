@@ -1,36 +1,37 @@
 import fetch from 'node-fetch';
 import Promise from 'promise';
 
-export async function doPost(url, data){
-	const response = await fetch(url, createRequestOptions('POST', data));
-	return await handleResponse(response);
+export async function doPost(url, data) {
+  const response = await fetch(url, createRequestOptions('POST', data));
+  return await handleResponse(response);
 }
 
-export async function doGet(url, token){
+export async function doGet(url, token) {
   const response = await fetch(url, createRequestOptions('GET', undefined, token));
   return await handleResponse(response);
 }
 
-export async function doPostFile(url, data, headers){
+export async function doPostFile(url, data, headers) {
   const response = await fetch(url, createRequestOptionsForFile('POST', data, headers));
   return await handleResponse(response);
 }
 
-function createRequestOptionsForFile(method, data, headers){
-  console.log(headers);
+function createRequestOptionsForFile(method, data, headers) {
+  // console.log(headers);
   var requestOptions = {
-    'method': method,
-    'headers': {
-      'Content-Type': undefined,
-      'Authorization': headers['authorization']
+    "method": method,
+    "headers": {
+      "Content-Type": ' multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+      "Authorization": headers['authorization']
     },
-    'formData': data
-    }
-    console.log(requestOptions)
+    "formData": data
+  }
+  console.log("create req for file")
+  console.log(requestOptions)
   return requestOptions;
 }
 
-function  createRequestOptions(method, data, token){
+function createRequestOptions(method, data, token) {
   var requestOptions = {
     'method': method,
     'dataType': 'json',
@@ -39,7 +40,7 @@ function  createRequestOptions(method, data, token){
       'content-type': 'application/json'
     }
   }
-  if(data){
+  if (data) {
     requestOptions.body = JSON.stringify(data);
   }
   return requestOptions;
@@ -47,8 +48,8 @@ function  createRequestOptions(method, data, token){
 
 export async function handleResponse(response) {
   let result;
- 
-   result = handleJSONResult(await response.text());
+
+  result = handleJSONResult(await response.text());
   if (response.ok) {
     return result;
   }
