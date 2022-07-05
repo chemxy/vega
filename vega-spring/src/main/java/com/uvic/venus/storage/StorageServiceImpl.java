@@ -25,7 +25,8 @@ public class StorageServiceImpl implements StorageService{
     private final Path rootLocation;
 
     @Autowired
-    public StorageServiceImpl(StorageProperties properties) {
+    public StorageServiceImpl() {
+        StorageProperties properties = new StorageProperties();
         this.rootLocation = Paths.get(properties.getLocation());
     }
 
