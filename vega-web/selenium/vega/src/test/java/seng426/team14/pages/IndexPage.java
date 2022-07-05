@@ -24,17 +24,17 @@ public class IndexPage extends Page {
     @FindBy(id = "index-page-image-3")
     public WebElement slideImage3;
 
-    @FindBy(xpath = "//buton[@aria-label='Slide 1']")
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[1]")
     public WebElement slideButton1;
 
-    @FindBy(xpath = "//buton[@aria-label='Slide 2']")
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[2]")
     public WebElement slideButton2;
 
-    @FindBy(xpath = "//buton[@aria-label='Slide 3']")
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[3]")
     public WebElement slideButton3;
 
 
-   public void clickOnSlideButton1(){
+    public void clickOnSlideButton1(){
        webActions.clickOn(this.slideButton1);
    }
 
