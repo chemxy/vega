@@ -26,7 +26,7 @@ public class DriverFactory {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(runBackground);
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         driver.manage().window().maximize();
         return driver;
     }
