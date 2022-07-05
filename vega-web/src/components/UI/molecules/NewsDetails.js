@@ -6,7 +6,8 @@ const NewsDetails = ({ news }) => {
 	const history = useHistory();
 	const para = news.para.map((p) => <p>{p}</p>)
 	const role = window.localStorage.getItem("role");
-
+	const addid = "news-edit-button-" + news.id;
+	const deleteid = "news-delete-button-" + news.id;
 	function onEdit() {
 		history.push({
 			pathname: '/edit-news',
@@ -35,8 +36,8 @@ const NewsDetails = ({ news }) => {
 				<h1>{news.h1}</h1>
 				<h2>{news.h2}</h2>
 				{para}
-				<button onClick={onEdit} className="btn btn-primary">edit</button>
-				<button onClick={onDelete} className="btn btn-danger ms-2">delete</button>
+				<button id={addid} onClick={onEdit} className="btn btn-primary">edit</button>
+				<button id={deleteid} onClick={onDelete} className="btn btn-danger ms-2">delete</button>
 			</div>
 		);
 	}

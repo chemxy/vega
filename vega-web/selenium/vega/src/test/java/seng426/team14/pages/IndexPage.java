@@ -3,6 +3,7 @@ package seng426.team14.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import seng426.team14.utils.webActions;
 
 public class IndexPage extends Page {
 
@@ -14,6 +15,34 @@ public class IndexPage extends Page {
         super();
     }
 
-    @FindBy(id = "sampleElement")
-    public WebElement sampleElement; //TODO sample - to be deleted
+    @FindBy(id = "index-page-image-1")
+    public WebElement slideImage1;
+
+    @FindBy(id = "index-page-image-2")
+    public WebElement slideImage2;
+
+    @FindBy(id = "index-page-image-3")
+    public WebElement slideImage3;
+
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[1]")
+    public WebElement slideButton1;
+
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[2]")
+    public WebElement slideButton2;
+
+    @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/div/div[1]/button[3]")
+    public WebElement slideButton3;
+
+
+    public void clickOnSlideButton1(){
+       webActions.clickOn(this.slideButton1);
+   }
+
+    public void clickOnSlideButton2(){
+        webActions.clickOn(this.slideButton2);
+    }
+
+    public void clickOnSlideButton3(){
+        webActions.clickOn(this.slideButton3);
+    }
 }
