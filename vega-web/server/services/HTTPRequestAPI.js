@@ -20,10 +20,7 @@ function createRequestOptionsForFile(method, data, headers) {
   console.log(headers);
   var requestOptions = {
     'method': method,
-    'headers': {
-      'Content-Type': undefined,
-      'Authorization': headers['authorization']
-    },
+    'headers': headers,
     'formData': data
   }
   console.log(requestOptions)
