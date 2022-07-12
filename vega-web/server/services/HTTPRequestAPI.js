@@ -17,16 +17,15 @@ export async function doPostFile(url, data, headers) {
 }
 
 function createRequestOptionsForFile(method, data, headers) {
-  // console.log(headers);
+  console.log(headers);
   var requestOptions = {
-    "method": method,
-    "headers": {
-      "Content-Type": ' multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
-      "Authorization": headers['authorization']
+    'method': method,
+    'headers': {
+      'Content-Type': undefined,
+      'Authorization': headers['authorization']
     },
-    "formData": data
+    'formData': data
   }
-  console.log("create req for file")
   console.log(requestOptions)
   return requestOptions;
 }
