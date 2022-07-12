@@ -9,7 +9,7 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 COPY src .src
-ARG JAR_FILE=venus-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/venus-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} .
 ADD ${JAR_FILE} app.jar
 EXPOSE 8080
