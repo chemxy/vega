@@ -1,6 +1,6 @@
-import {doPost} from '../BaseAPI.js';
-
-export function login(userInfo){
+import { domain } from '../../models/constants.js';
+import { doPost } from '../BaseAPI.js';
+export function login(userInfo) {
 	console.log("In Auth///////", userInfo);
-	return doPost("http://localhost:8000/api/login", userInfo);
+	return doPost("http://" + domain + ":8000/api/login", userInfo);
 }

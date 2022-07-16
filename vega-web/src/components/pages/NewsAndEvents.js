@@ -5,11 +5,12 @@ import ListNewsDetails from '../UI/organisms/ListNewsDetails.js';
 import BlogPageLayout from '../templates/BlogPageLayout.js';
 import { useState, useContext, useEffect } from 'react';
 import { doPostFile, doGet } from '../../service/BaseAPI.js';
+import { domain } from '../../models/constants.js';
 
 const NewsAndEvents = (props) => {
 	const [newsList, setNewsList] = useState([]);
 	useEffect(() => {
-		doGet("http://localhost:8000/api/venus/get-news").then(res => {
+		doGet("http://" + domain + ":8000/api/venus/get-news").then(res => {
 			setNewsList(res);
 		})
 	});

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { doPost } from "../../service/BaseAPI";
+import { domain } from '../../models/constants.js';
 
 const AddNews = () => {
     const history = useHistory();
@@ -22,7 +23,7 @@ const AddNews = () => {
             "h2": subtitle,
             "para": [content]
         }
-        doPost("http://localhost:8000/api/venus/add-news", body).then(res => {
+        doPost("http://" + domain + ":8000/api/venus/add-news", body).then(res => {
             console.log(res)
         })
         history.push({

@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { domain } from "../../../models/constants.js";
 import { doPost } from "../../../service/BaseAPI.js";
 
 const NewsDetails = ({ news }) => {
@@ -20,7 +21,7 @@ const NewsDetails = ({ news }) => {
 		const body = {
 			"id": news.id
 		}
-		doPost("http://localhost:8000/api/venus/delete-news", body).then(res => {
+		doPost("http://" + domain + ":8000/api/venus/delete-news", body).then(res => {
 			console.log(res)
 		})
 		history.push({

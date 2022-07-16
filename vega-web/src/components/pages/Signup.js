@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { domain } from '../../models/constants';
 import { doPost } from "../../service/BaseAPI";
 
 const Signup = (props) => {
@@ -17,7 +18,7 @@ const Signup = (props) => {
             "lastname": lastname,
             "password": password
         }
-        doPost("http://localhost:8000/api/venus/register", body).then(res => {
+        doPost("http://" + domain + ":8000/api/venus/register", body).then(res => {
             console.log(res)
         })
         history.push({
