@@ -16,22 +16,24 @@ const env = config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: '50mb' }));
 
-if (process.env.NODE_ENV === 'development') {
-  var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-  };
-  app.use(cors(corsOptions));
-}
+// if (process.env.NODE_ENV === 'development') {
+var corsOptions = {
+  origin: '*',
+  methods: ['GET','POST'],
+  optionsSuccessStatus: 200
+};
+console.log("use cors")
+app.use(cors(corsOptions));
+// }
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
   res.send('Hello World!')
 });
 
 
-app.use("/api/login", auth);
-app.use("/api/venus", fileUploader)
-app.use("/api/venus/admin", adminPanel)
+app.use("/api/login", cors(corsOptions), auth);
+app.use("/api/venus",cors(corsOptions), fileUploader)
+app.use("/api/venus/admin", cors(corsOptions),adminPanel)
 
 
 app.get("/api/venus/get-news", (req, res) => {
