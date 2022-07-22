@@ -19,10 +19,10 @@ public class NewsAndEventsPage extends Page{
     @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/button")
     public WebElement addNewsButton;
 
-    @FindBy(xpath = "//*[@id=\"news-edit-button\"]")
+    @FindBy(id = "news-edit-button-0")
     public WebElement editNewsButton;
 
-    @FindBy(xpath = "//*[@id=\"news-delete-button\"]")
+    @FindBy(id = "news-delete-button-0")
     public WebElement deleteNewsButton;
 
     @FindBy(xpath = "/html/body/div/div/div[1]/div[3]/div/h1")
