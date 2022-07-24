@@ -16,6 +16,15 @@ public class NewsAndEventsPage extends Page{
         super();
     }
 
+    @FindBy(xpath = "//*[@id=\"login-username-input\"]")
+    public WebElement username;
+
+    @FindBy(xpath = "//*[@id=\"login-password-input\"]")
+    public WebElement password;
+
+    @FindBy(xpath = "//*[@id=\"login-submit-button\"]")
+    public WebElement logIn;
+
     @FindBy(xpath = "/html/body/div/div/div[1]/div[2]/button")
     public WebElement addNewsButton;
 
@@ -105,6 +114,12 @@ public class NewsAndEventsPage extends Page{
         Util.isWebElementVisible(this.driver, this.editNewsButton);
     }
 
+    public void loginAsAdmin(){
+        driver.get("http://localhost:3000/login");
+        webActions.setText(username, "admin@venus.com");
+        webActions.setText(password, "pass");
+        webActions.clickOn(this.logIn);
+    }
 
 
 
