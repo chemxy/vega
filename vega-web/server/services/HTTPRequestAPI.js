@@ -37,7 +37,8 @@ function createRequestOptions(method, data, token) {
     'dataType': 'json',
     'headers': {
       'authorization': token,
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
   }
   if (data) {
