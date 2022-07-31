@@ -2,6 +2,7 @@ import auth from './auth/AuthenticationManager.js';
 import fileUploader from './controller/FileUploadController.js';
 import adminPanel from './controller/AdminPanelController.js'
 import express from 'express';
+import helmet from 'helmet';
 import { config } from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -15,6 +16,9 @@ const env = config();
 //app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: '50mb' }));
+
+/// Use Hemlmet middleware to handle App security (Headers).
+app.use(helmet());
 
 // if (process.env.NODE_ENV === 'development') {
 var corsOptions = {
