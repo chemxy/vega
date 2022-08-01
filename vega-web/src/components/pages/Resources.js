@@ -3,7 +3,7 @@ import SimplePageLayout from '../templates/SimplePageLayout.js';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { fileUploader, fetchFiles, fetchData } from '../../service/FileUpload/FileUploader.js';
 import { UserContext } from '../../auth/UserProvider.js';
-// import { console.log } from '../../../server/utils.js';
+import { debugLog } from '../../utils.js';
 
 const Resources = (props) => {
 
@@ -15,8 +15,8 @@ const Resources = (props) => {
 	const [content, setContent] = useState('');
 	var uploadHTML;
 	useEffect(() => {
-		console.log("JWT is", user.jwt, dataLoaded)
-		console.log("Inside useEffect")
+		debugLog("JWT is", user.jwt, dataLoaded)
+		debugLog("Inside useEffect")
 		fetchFiles(user.jwt)
 			.then(resp => {
 				setDataLoaded(true);
@@ -36,13 +36,13 @@ const Resources = (props) => {
 		formData.append("file", selectedFile);
 		fileUploader(formData, user.jwt)
 			.then(res => {
-				console.log("Response", res);
+				debugLog("Response", res);
 			})
 
 	}
 
 	const fetchFileData = (name) => {
-		console.log(user.jwt)
+		debugLog(user.jwt)
 		fetchData(name, user.jwt)
 			.then(res => {
 				setContent(res);

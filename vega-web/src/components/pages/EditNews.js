@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { doPost } from "../../service/BaseAPI";
-// import { console.log } from "../../../server/utils";
+import { debugLog } from "../../utils";
 
 const EditNews = () => {
     const history = useHistory();
@@ -15,12 +15,12 @@ const EditNews = () => {
     let [subtitle, setSubtitle] = useState(defaultSubtitle);
     let [content, setContent] = useState(defaultContent);
     function doEdit() {
-        // console.log(title);
-        // console.log(subtitle);
-        // console.log(content);
+        // debugLog(title);
+        // debugLog(subtitle);
+        // debugLog(content);
         const d = new Date();
         const datestring = (d.getMonth() + 1) + "." + d.getDate() + "." + d.getFullYear().toString().substring(2);
-        // console.log(datestring)
+        // debugLog(datestring)
         const body = {
             "id": news.id,
             "content": {
@@ -31,7 +31,7 @@ const EditNews = () => {
             }
         }
         doPost("http://localhost:8000/api/venus/edit-news", body).then(res => {
-            console.log(res)
+            debugLog(res)
         })
         history.push({
             pathname: '/news',
