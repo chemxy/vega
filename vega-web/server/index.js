@@ -30,8 +30,17 @@ app.use(session({
 }))
 
 /// Use Hemlmet middleware to handle App security (Headers).
-app.use(helmet());
-
+//app.use(helmet());
+app.use(  
+  helmet.contentSecurityPolicy({
+    directives: {
+      "font-src": ["'self'"],
+      "style-src": ["'self'"],
+    },
+  })
+);
+app.use(helmet.noSniff());
+app.use(helmet.hidePoweredBy());
 // if (process.env.NODE_ENV === 'development') {
 var corsOptions = {
   origin: '*',

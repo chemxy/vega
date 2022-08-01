@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 export async function debugLog(msg) {
     if (DEBUG) {
