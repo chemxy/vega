@@ -5,18 +5,19 @@ import {login} from '../../service/auth/AuthenticationManager.js';
 
 import {UserContext} from '../../auth/UserProvider.js';
 import  { Redirect } from 'react-router-dom'
+import debugLog from '../../server/utils';
 
 const Login = (props) => {
 	
 	const { context } = props; 
 	const {user, setUserInfo,logout} = useContext(UserContext);
 	const [auth, setAuth] = useState(false);
-	console.log("Userinfo", user);
+	debugLog("Userinfo", user);
 	function onSubmit(userInfo){
 		login(userInfo)
 			.then(res => {
-				console.log("Response", res);
-				console.log(res.jwt);
+				debugLog("Response", res);
+				debugLog(res.jwt);
 				var role = res.authorities[0].authority;
 				setUserInfo(userInfo.username, res.jwt, role)
 				setAuth(true);

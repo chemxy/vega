@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import {uploader, listFiles, fetchcontent} from '../services/FileHandlerAPI.js';
 import fileUpload from 'express-fileupload';
+import debugLog from './utils.js';
 
 let router = express();
 
@@ -14,42 +15,42 @@ router.use(fileUpload({
 
 router.post("/upload", (req,res) => {
 	var formData = req.files;
-    console.log("Entered into File uploader", formData)
+    debugLog("Entered into File uploader", formData)
     uploader("http://localhost:8080/venus/admin/handlefileupload", formData, req.headers)
     		.then(response => {
-    			console.log("Response", response);
+    			debugLog("Response", response);
     			res.send(response);
     		})
     		.catch(error => {
-    			console.log("ERROR:", error);
+    			debugLog("ERROR:", error);
     			res.send(error);
     		})
 })
 
 router.get("/listfiles", (req, res) => {
-	console.log("Entered list files");
+	debugLog("Entered list files");
 	listFiles("http://localhost:8080/venus/files/listfiles", req.headers)
 	.then(response => {
-    	console.log("Response", response);
+    	debugLog("Response", response);
     	res.send(response);
     })
     .catch(error => {
-    	console.log("ERROR:", error);
+    	debugLog("ERROR:", error);
     	res.send(error);
     })
 })
 
 router.get("/fetchcontent", (req, res) => {
-	console.log("Fetch Content")
+	debugLog("Fetch Content")
 	const {name} = req.query
-	console.log(name)
+	debugLog(name)
 	fetchcontent("http://localhost:8080/venus/files/fetch/"+name, req.headers)
 	.then(response => {
-    	console.log("Response", response);
+    	debugLog("Response", response);
     	res.send(response);
     })
     .catch(error => {
-    	console.log("ERROR:", error);
+    	debugLog("ERROR:", error);
     	res.send(error);
     })
 

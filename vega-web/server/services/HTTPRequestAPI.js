@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import Promise from 'promise';
+import debugLog from './utils.js';
 
 export async function doPost(url, data) {
   const response = await fetch(url, createRequestOptions('POST', data));
@@ -17,7 +18,7 @@ export async function doPostFile(url, data, headers) {
 }
 
 function createRequestOptionsForFile(method, data, headers) {
-  // console.log(headers);
+  // debugLog(headers);
   var requestOptions = {
     "method": method,
     "headers": {
@@ -26,8 +27,8 @@ function createRequestOptionsForFile(method, data, headers) {
     },
     "formData": data
   }
-  console.log("create req for file")
-  console.log(requestOptions)
+  debugLog("create req for file")
+  debugLog(requestOptions)
   return requestOptions;
 }
 

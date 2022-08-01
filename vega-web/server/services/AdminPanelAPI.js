@@ -1,17 +1,18 @@
 import {doPostFile, doGet} from './HTTPRequestAPI.js';
+import debugLog from './utils.js';
 
 export function fetchusers(url, headers){
-	console.log(headers);
+	debugLog(headers);
 	return doGet(url, headers['authorization'])
 }
 
 export function enableAccount(url, headers){
-	console.log(headers);
-	console.log(url);
+	debugLog(headers);
+	debugLog(url);
 	return doGet(url, headers['authorization'])
 }
 
 export function changeRole(url,headers){
-	console.log(url);
+	debugLog(url);
 	return doGet(url, headers['authorization'])
 }

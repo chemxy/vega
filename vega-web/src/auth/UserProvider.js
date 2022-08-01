@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
+import debugLog from '../../server/utils';
+
 const UserContext = createContext({
   user :'',
   setUserInfo: () => {},
@@ -24,13 +26,13 @@ const UserProvider = ({children}) => {
 
     // Login updates the user data with a name parameter
   	const setUserInfo = (name, jwt, role) => {
-    	console.log("SetUserInfo called");
+    	debugLog("SetUserInfo called");
       setUser((user) => ({
       		username: name,
       		jwt: jwt,
           role: role
     	}));
-      console.log(user)
+      debugLog(user)
       window.localStorage.setItem("username", name);
       window.localStorage.setItem("jwt", jwt);
       window.localStorage.setItem("role", role);
@@ -51,7 +53,7 @@ const UserProvider = ({children}) => {
       window.localStorage.setItem("jwt","");
       window.localStorage.setItem("role","");
   	};
-    console.log("Rendering context provider");
+    debugLog("Rendering context provider");
 	return (
 
     	<UserContext.Provider value={{ user, setUserInfo, logout }}>

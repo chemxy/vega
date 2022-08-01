@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { doPost } from "../../service/BaseAPI";
 import { domain } from '../../models/constants.js';
+import debugLog from '../../server/utils';
 
 const AddNews = () => {
     const history = useHistory();
@@ -11,12 +12,12 @@ const AddNews = () => {
     let [subtitle, setSubtitle] = useState('');
     let [content, setContent] = useState('');
     function doAdd() {
-        // console.log(title);
-        // console.log(subtitle);
-        // console.log(content);
+        // debugLog(title);
+        // debugLog(subtitle);
+        // debugLog(content);
         const d = new Date();
         const datestring = (d.getMonth() + 1) + "." + d.getDate() + "." + d.getFullYear().toString().substring(2);
-        // console.log(datestring)
+        // debugLog(datestring)
         const body = {
             "date": datestring,
             "h1": title,
@@ -24,7 +25,7 @@ const AddNews = () => {
             "para": [content]
         }
         doPost("http://" + domain + ":8000/api/venus/add-news", body).then(res => {
-            console.log(res)
+            debugLog(res)
         })
         history.push({
             pathname: '/news',
