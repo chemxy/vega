@@ -4,13 +4,13 @@ import { UserContext } from '../../auth/UserProvider.js';
 import { useState, useContext, useEffect } from 'react';
 
 import { Form, Button, Row, Col, Table } from 'react-bootstrap';
-import debugLog from '../../server/utils';
+// import { console.log } from '../../../server/utils.js';
 
 const AdminPanel = (props) => {
 	const { user } = useContext(UserContext);
 	const [listOfUsers, setUsers] = useState([]);
 	useEffect(() => {
-		debugLog("Inside useEffect")
+		console.log("Inside useEffect")
 		fetchuser(user.jwt)
 			.then(resp => {
 				setUsers(resp)
@@ -20,19 +20,19 @@ const AdminPanel = (props) => {
 	}, [user]);
 
 	const enableUser = (username) => {
-		debugLog("Enable User called with", username)
+		console.log("Enable User called with", username)
 		enableAccount(username, user.jwt)
 			.then(resp =>
-				debugLog("User enabled"))
+				console.log("User enabled"))
 	}
 
 
 	const changeRole = (evt, username) => {
-		debugLog(evt.target.value, username)
+		console.log(evt.target.value, username)
 		var role = evt.target.value
 		changeAccountRole(username, role, user.jwt)
 			.then(resp =>
-				debugLog("Changed Roles"))
+				console.log("Changed Roles"))
 	}
 
 	const listOfUsersHTML = () => {

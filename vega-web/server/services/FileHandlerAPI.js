@@ -1,5 +1,5 @@
 import {doPostFile, doGet} from './HTTPRequestAPI.js';
-import debugLog from './utils.js';
+import { debugLog } from '../utils.js';
 
 export function uploader(url, data, headers){
 	return doPostFile(url, data, headers);

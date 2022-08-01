@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import {uploader, listFiles, fetchcontent} from '../services/FileHandlerAPI.js';
 import fileUpload from 'express-fileupload';
-import debugLog from './utils.js';
+import { debugLog } from '../utils.js';
 
 let router = express();
 

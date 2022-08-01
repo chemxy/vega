@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import {login} from '../services/LoginRequestAPI.js';
-import debugLog from './utils.js';
+import { debugLog } from '../utils.js';
 
 function authModule(req, res) {
 	if (req.method == 'POST') {

@@ -1,9 +1,9 @@
-DEBUG = false;
+const DEBUG = false;
 
-function debugLog(msg) {
+export async function debugLog(msg) {
     if (DEBUG) {
         console.log(msg);
     }
 }
 
-module.exports = debugLog;
+// module.exports = debugLog;

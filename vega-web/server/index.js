@@ -2,13 +2,14 @@ import auth from './auth/AuthenticationManager.js';
 import fileUploader from './controller/FileUploadController.js';
 import adminPanel from './controller/AdminPanelController.js'
 import express from 'express';
+import session from 'express-session'
 import helmet from 'helmet';
 import { config } from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import fs from 'fs'
 import { doPost } from './services/HTTPRequestAPI.js';
-import debugLog from './utils.js';
+import { debugLog } from './utils.js';
 
 const app = express();
 const port = 8000;
@@ -18,8 +19,10 @@ const env = config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: '50mb' }));
 app.set('trust proxy', 1) // trust first proxy
-app.use(express.session({
+app.use(session({
   secret: "secret",
+  resave: false,
+  saveUninitialized: true,
   cookie: {
       httpOnly: true,
       secure: true

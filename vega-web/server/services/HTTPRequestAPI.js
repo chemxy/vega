@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import Promise from 'promise';
-import debugLog from './utils.js';
+import { debugLog } from '../utils.js';
 
 export async function doPost(url, data) {
   const response = await fetch(url, createRequestOptions('POST', data));
