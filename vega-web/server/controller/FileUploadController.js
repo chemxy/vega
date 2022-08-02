@@ -15,6 +15,14 @@ router.use(fileUpload({
 
 router.post("/upload", (req,res) => {
 	var formData = req.files;
+	// const reqQuery = formData.body;  
+	// const validPattern = /^[A-Za-z]+$/;
+
+	// if(!reqQuery.file.match(validPattern)){
+	// 	return res.status(400).json({ err: "Invalid input."})
+	// } else if(!reqQuery.filename.match(validPattern)){
+	// 	return res.status(400).json({ err: "Invalid input."})
+	// }
     debugLog("Entered into File uploader", formData)
     uploader("http://localhost:8080/venus/admin/handlefileupload", formData, req.headers)
     		.then(response => {

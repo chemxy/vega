@@ -138,12 +138,18 @@ app.post("/api/venus/delete-news", (req, res) => {
 })
 
 app.post("/api/venus/register", (req, res) => {
-
+  
   //Input Validation
-  const {reqQuery} = req.params;  
+  const reqQuery = req.body;  
   const validPattern = /^[A-Za-z]+$/;
 
-  if(!reqQuery.match(validPattern)){
+  if(!reqQuery.username.match(validPattern)){
+    return res.status(400).json({ err: "Invalid input."})
+  } else if(!reqQuery.password.match(validPattern)){
+    return res.status(400).json({ err: "Invalid input."})
+  } else if(!reqQuery.firstname.match(validPattern)){
+    return res.status(400).json({ err: "Invalid input."})
+  } else if(!reqQuery.lastname.match(validPattern)){
     return res.status(400).json({ err: "Invalid input."})
   }
 
@@ -154,6 +160,12 @@ app.post("/api/venus/register", (req, res) => {
       debugLog("ERROR:", error);
       res.send(error);
     })
+})
+
+// Suppress Application Errors from users
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(503).send('Something broke!')
 })
 
 app.listen(port, () => {

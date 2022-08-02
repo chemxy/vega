@@ -1,3 +1,4 @@
+// Silence logs when in production env
 const DEBUG = false;
 
 export async function debugLog(msg) {
