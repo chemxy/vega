@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { UserContext } from '../../../auth/UserProvider.js';
+import { debugLog } from '../../../utils.js';
 
 const VenusNavBar = (props) => {
   const { user } = useContext(UserContext);
@@ -10,7 +11,7 @@ const VenusNavBar = (props) => {
   var adminpanel;
 
   if (user.username && user.jwt) {
-    console.log(user);
+    debugLog(user);
     logout = <Nav.Link href="/account">Logout</Nav.Link>;
   } else {
     logout = <Nav.Link href="/login">Login/SignUp</Nav.Link>;

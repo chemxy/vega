@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { domain } from '../../models/constants';
 import { doPost } from "../../service/BaseAPI";
+import { debugLog } from '../../utils';
 
 const Signup = (props) => {
     const history = useHistory();
@@ -19,7 +20,7 @@ const Signup = (props) => {
             "password": password
         }
         doPost("http://" + domain + ":8000/api/venus/register", body).then(res => {
-            console.log(res)
+            debugLog(res)
         })
         history.push({
             pathname: '/login',

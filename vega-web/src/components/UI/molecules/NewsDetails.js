@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { domain } from "../../../models/constants.js";
 import { doPost } from "../../../service/BaseAPI.js";
+import { debugLog } from "../../../utils.js";
 
 const NewsDetails = ({ news }) => {
 	const history = useHistory();
@@ -17,12 +18,12 @@ const NewsDetails = ({ news }) => {
 	}
 
 	function onDelete() {
-		console.log(news.id)
+		debugLog(news.id)
 		const body = {
 			"id": news.id
 		}
 		doPost("http://" + domain + ":8000/api/venus/delete-news", body).then(res => {
-			console.log(res)
+			debugLog(res)
 		})
 		history.push({
 			pathname: '/news',

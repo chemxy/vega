@@ -1,4 +1,4 @@
-import { Container, Row } from 'react-bootstrap';
+// import { container, Row } from 'react-bootstrap';
 import Header from '../UI/organisms/Header.js';
 import Footer from '../UI/organisms/Footer.js';
 import ListNewsDetails from '../UI/organisms/ListNewsDetails.js';
