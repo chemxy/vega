@@ -7,6 +7,20 @@ export async function doPost(url, data) {
   return await handleResponse(response);
 }
 
+export async function doPostToken(url, data, token) {
+  const response = await fetch(url, {
+    method: 'POST',
+    'dataType': 'json',
+    headers: {
+      'Authorization': token,
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  });
+  return await handleResponse(response);
+}
+
 export async function doGet(url, token) {
   const response = await fetch(url, createRequestOptions('GET', undefined, token));
   return await handleResponse(response);
@@ -45,6 +59,7 @@ function createRequestOptions(method, data, token) {
   if (data) {
     requestOptions.body = JSON.stringify(data);
   }
+  console.log(requestOptions)
   return requestOptions;
 }
 

@@ -1,5 +1,4 @@
 import { UserProvider } from '../auth/UserProvider.js';
-import { debugLog } from '../utils';
 
 function getUserToken() {
   return UserProvider;
@@ -35,7 +34,7 @@ export async function doGet(url, token) {
 
 
 export async function doPost(url, data) {
-  debugLog('Request data:', data);
+  console.log('Request data:', data);
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -48,15 +47,16 @@ export async function doPost(url, data) {
 }
 
 export async function doPostFile(url, data, token) {
-  debugLog(getUserToken());
-  debugLog('Request data:', data);
+  console.log(getUserToken());
+  console.log('Request data:', data);
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + token,
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
     },
-    body: data
+    body: JSON.stringify(data),
   });
 
   return await handleResponse(response);
