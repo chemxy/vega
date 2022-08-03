@@ -1,5 +1,6 @@
 package com.uvic.venus.controller;
 
+import com.uvic.venus.model.ChangeUserRoleRequest;
 import com.uvic.venus.model.EnableUserInfo;
 import com.uvic.venus.model.UserInfo;
 import com.uvic.venus.repository.UserInfoDAO;
@@ -67,13 +68,31 @@ public class AdminController {
         return ResponseEntity.ok("User enabled Successfully");
     }
 
-    @RequestMapping(value ="/changerole", method = RequestMethod.GET)
-    public ResponseEntity<?> changeRole(@RequestParam String username, @RequestParam String role){
+//    @RequestMapping(value ="/changerole", method = RequestMethod.GET)
+//    public ResponseEntity<?> changeRole(@RequestParam String username, @RequestParam String role){
+//        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//        authorities.add(new SimpleGrantedAuthority(role));
+//
+//        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+//        UserDetails userDetails = manager.loadUserByUsername(username);
+//
+//        User.UserBuilder builder = User.builder();
+//        builder.username(userDetails.getUsername());
+//        builder.password(userDetails.getPassword());
+//        builder.authorities(authorities);
+//        builder.disabled(userDetails.isEnabled());
+//
+//        manager.updateUser(builder.build());
+//        return ResponseEntity.ok("User role changed Successfully");
+//    }
+
+    @RequestMapping(value ="/changerole", method = RequestMethod.POST)
+    public ResponseEntity<?> changeRole(@RequestBody ChangeUserRoleRequest user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority(role));
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
-        UserDetails userDetails = manager.loadUserByUsername(username);
+        UserDetails userDetails = manager.loadUserByUsername(user.getUsername());
 
         User.UserBuilder builder = User.builder();
         builder.username(userDetails.getUsername());

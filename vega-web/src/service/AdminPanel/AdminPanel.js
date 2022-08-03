@@ -16,5 +16,9 @@ export function enableAccount(username, token) {
 
 export function changeAccountRole(username, role, token) {
 	// return doGet("http://" + domain + ":8000/api/venus/admin/changerole?username=" + username + "&role=" + role, token)
-	return doPostWithToken("http://" + domain + ":8000/api/venus/admin/changerole?username=" + username + "&role=" + role, token)
+	const body = {
+		"username": username,
+		"role": role
+	}
+	return doPostWithToken("http://" + domain + ":8000/api/venus/admin/changerole", body, token)
 }

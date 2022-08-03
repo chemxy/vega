@@ -3,7 +3,7 @@ import express from 'express';
 import { fetchusers, enableAccount, changeRole } from '../services/AdminPanelAPI.js';
 import fileUpload from 'express-fileupload';
 import { debugLog } from '../utils.js';
-import { doPost, doPostToken } from '../services/HTTPRequestAPI.js';
+import { doPost, doPostWithToken } from '../services/HTTPRequestAPI.js';
 
 let router = express();
 
@@ -43,7 +43,7 @@ router.get("/getusers", (req, res) => {
 router.post("/enableuser", (req, res) => {
 	debugLog("Request: Enable User");
 	const token = req.headers["authorization"]
-	doPostToken("http://localhost:8080/venus/admin/enableuser", req.body, token)
+	doPostWithToken("http://localhost:8080/venus/admin/enableuser", req.body, token)
 		.then(response => {
 			debugLog("Response", response);
 			res.send(response);
@@ -54,11 +54,25 @@ router.post("/enableuser", (req, res) => {
 		})
 })
 
-router.get("/changerole", (req, res) => {
+// router.get("/changerole", (req, res) => {
+// 	debugLog("Request: Change Role")
+// 	const { username } = req.query;
+// 	const { role } = req.query;
+// 	changeRole(`http://localhost:8080/venus/admin/changerole?username=${username}&role=${role}`, req.headers)
+// 		.then(response => {
+// 			debugLog("Response", response);
+// 			res.send(response);
+// 		})
+// 		.catch(error => {
+// 			debugLog("ERROR:", error);
+// 			res.send(error)
+// 		})
+// })
+
+router.post("/changerole", (req, res) => {
 	debugLog("Request: Change Role")
-	const { username } = req.query;
-	const { role } = req.query;
-	changeRole(`http://localhost:8080/venus/admin/changerole?username=${username}&role=${role}`, req.headers)
+	const token = req.headers["authorization"]
+	doPostWithToken(`http://localhost:8080/venus/admin/changerole`, req.body, token)
 		.then(response => {
 			debugLog("Response", response);
 			res.send(response);
