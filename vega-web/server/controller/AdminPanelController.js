@@ -41,17 +41,15 @@ router.get("/getusers", (req, res) => {
 // 		})
 
 router.post("/enableuser", (req, res) => {
-	console.log("Request: Enable User");
-	console.log(req.headers["authorization"])
-	console.log(req.body)
+	debugLog("Request: Enable User");
 	const token = req.headers["authorization"]
 	doPostToken("http://localhost:8080/venus/admin/enableuser", req.body, token)
 		.then(response => {
-			console.log("Response", response);
+			debugLog("Response", response);
 			res.send(response);
 		})
 		.catch(error => {
-			console.log("ERROR:", error);
+			debugLog("ERROR:", error);
 			res.send(error);
 		})
 })

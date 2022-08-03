@@ -9,11 +9,11 @@ function authModule(req, res) {
 		debugLog(userInfo);
 		login("http://localhost:8080/venus/authenticate", userInfo)
 			.then(response => {
-				console.log("Response", response);
+				debugLog("Response", response);
 				res.send(response);
 			})
 			.catch(error => {
-				console.log("ERROR:", error);
+				debugLog("ERROR:", error);
 				res.send(error);
 			})
 	}
