@@ -21,18 +21,18 @@ class SecurityConfigurationTest {
         PasswordEncoder encoder = securityConfiguration.passwordEncoder();
         assert(encoder != null);
     }
-    @Test
-    //Unit test for SecurityConfiguration.configureGlobal
-    void configureGlobal() {
-        JdbcUserDetailsManagerConfigurer jdbc = mock(JdbcUserDetailsManagerConfigurer.class);
-        try {
-            when(auth.jdbcAuthentication()).thenReturn(jdbc);
-            securityConfiguration.configureGlobal(auth);
-            verify(auth).jdbcAuthentication();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//     @Test
+//     //Unit test for SecurityConfiguration.configureGlobal
+//     void configureGlobal() {
+//         JdbcUserDetailsManagerConfigurer jdbc = mock(JdbcUserDetailsManagerConfigurer.class);
+//         try {
+//             when(auth.jdbcAuthentication()).thenReturn(jdbc);
+//             securityConfiguration.configureGlobal(auth);
+//             verify(auth).jdbcAuthentication();
+//         } catch (Exception e) {
+//             throw new RuntimeException(e);
+//         }
+//     }
 
     //The remaining methods in SecurityConfiguration.java require integration testing rather than unit testing
 }
